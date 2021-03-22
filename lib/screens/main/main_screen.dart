@@ -1,5 +1,7 @@
 import 'package:nua/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
+
 
 class MainScreen extends StatefulWidget {
 
@@ -9,6 +11,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen >{
+
+  int _index = 0;
 
   @override 
   Widget build(BuildContext context){
@@ -35,36 +39,44 @@ class _MainScreenState extends State<MainScreen >{
 
 
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      extendBody: true,
+      bottomNavigationBar: new Theme(
+
+        data:Theme.of(context).copyWith(
+        // sets the background color of the `BottomNavigationBar`
+        canvasColor: Colors.green,
+        // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+        backgroundColor: Colors.red,
+        textTheme: Theme
+            .of(context)
+            .textTheme
+            .copyWith(caption: new TextStyle(color: Colors.yellow))), // sets the inactive color of the `BottomNavigationBar`
+        child: new FloatingNavbar(
+      
 /*         currentIndex: _currentTab,
         onTap: (int value) {
           setState(() {
             _currentTab = value; 
           });
         }, */
+        onTap: (int val) => setState(() => _index = val),
+        currentIndex: _index,
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              size: 30.0,
-            ),
-            title: SizedBox.shrink(),
+          FloatingNavbarItem(
+            icon: Icons.home,
+            title: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.local_pizza,
-              size: 30.0,
-            ),
-            title: SizedBox.shrink(),
+          FloatingNavbarItem(
+            icon: Icons.search,
+            title: 'Search',
           ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              radius: 15.0,
-              backgroundImage: NetworkImage('http://i.imgur.com/zL4Krbz.jpg'),
-            ),
-            title: SizedBox.shrink(),
+          FloatingNavbarItem(
+            icon: Icons.home,
+            title: 'Home',
           )
         ],
+      ),
+
       ),
 
     );
