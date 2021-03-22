@@ -15,8 +15,23 @@ class _MainScreenState extends State<MainScreen >{
 
     return Scaffold(
 
-      body: SafeArea(
-
+      body: SafeArea( 
+        child: Column(
+          children: [
+            Spacer(flex: 2),
+            Image.asset("assets/images/welcome_image.png"),
+            Spacer(flex: 3),
+            Text(
+              "Space News for You",
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  .copyWith(fontWeight: FontWeight.bold),
+            )
+        ]
+        )
+      
 
 
       ),

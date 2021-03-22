@@ -1,4 +1,5 @@
-import 'package:nua/screens/welcome/welcome_screen.dart';
+//import 'package:nua/screens/welcome/welcome_screen.dart';
+import 'package:nua/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:nua/theme.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightThemeData(context),
       darkTheme: darkThemeData(context),
-      home: WelcomeScreen(),
+      home: MainScreen(),
     );
   }
 }
