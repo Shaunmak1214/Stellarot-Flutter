@@ -1,7 +1,11 @@
 //import 'package:nua/screens/welcome/welcome_screen.dart';
-import 'package:nua/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:nua/theme.dart';
+import 'package:nua/screens/main/main_screen.dart';
+import 'package:nua/screens/search/search_screen.dart';
+import 'package:nua/screens/notification/notification_screen.dart';
+import 'package:nua/screens/profile/profile_screen.dart';
+//import 'package:nua/theme.dart';
+//import 'package:nua/components/bottom_navbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,10 +17,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: lightThemeData(context),
-      darkTheme: darkThemeData(context),
-      home: MainScreen(),
+      /*debugShowCheckedModeBanner: false,*/
+      /*theme: lightThemeData(context),
+      darkTheme: darkThemeData(context),*/
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => MainScreen(),
+        '/search': (context) => SearchScreen(),
+        '/notification': (context) => NotificationScreen(),
+        '/profile': (context) => ProfileScreen(),
+      },
     );
   }
 }
