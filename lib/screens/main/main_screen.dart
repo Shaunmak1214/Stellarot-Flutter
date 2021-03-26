@@ -15,11 +15,6 @@ class _MainScreenState extends State<MainScreen >{
 
     return Scaffold(
 
-<<<<<<< HEAD
-      body: SafeArea(
-
-        
-=======
       body: SafeArea( 
         child: Column(
           children: [
@@ -38,7 +33,6 @@ class _MainScreenState extends State<MainScreen >{
         )
       
 
->>>>>>> f17078c8b3795de76c6e36c58516f40a4598a200
 
       ),
       bottomNavigationBar: BottomNavigationBar(
