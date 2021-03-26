@@ -1,4 +1,4 @@
-import 'package:nua/constants.dart';
+/*import 'package:nua/constants.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -69,4 +69,4 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
-}
+}*/
