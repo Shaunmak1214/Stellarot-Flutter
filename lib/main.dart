@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'NUA',
       /*debugShowCheckedModeBanner: false,*/
       /*theme: lightThemeData(context),
       darkTheme: darkThemeData(context),*/
@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
+        scaffoldBackgroundColor: const Color(0xEAEAEAEF),
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/home',

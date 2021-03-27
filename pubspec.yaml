@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  http: ^0.12.2
   floating_bottom_navigation_bar: ^1.4.1
   flutter:
     sdk: flutter
@@ -32,6 +33,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+
   flutter_test:
     sdk: flutter
   integration_test:
@@ -42,6 +44,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
+  fonts:
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-Regular.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
