@@ -21,7 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  http: ^0.12.2
+  http: ^0.13.1
   floating_bottom_navigation_bar: ^1.4.1
   flutter:
     sdk: flutter
@@ -49,6 +49,14 @@ flutter:
     - family: Quicksand
       fonts:
         - asset: assets/fonts/Quicksand-Regular.ttf
+
+    - family: NicoMoji
+      fonts:
+        - asset: assets/fonts/NicoMoji-Regular.ttf
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
