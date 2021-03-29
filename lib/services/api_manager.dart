@@ -17,10 +17,9 @@ class API_Manager{
         log('200');
         var jsonString = response.body;
         /* print(jsonString); */
-        log(jsonString);
+        /* log(jsonString); */
         var jsonMap = json.decode(jsonString);
-        /* log(jsonMap); */
-
+        log(jsonMap);
         nasaPod = Nasapod.fromJson(jsonMap);
       }else{
 
