@@ -1,10 +1,31 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:nua/models/nasapod.dart';
+import 'package:http/http.dart';
+import 'package:nua/models/hsallnews.model.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
+class APIManager {
+  final String newsUrl = "https://space-bot-2021.herokuapp.com/v1/news";
 
-class API_Manager{
+  Future<List<HsAllNews>> getNews() async {
+    Response res = await get(newsUrl);
+
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      /* log(res.body); */
+      List<HsAllNews> news = body
+        .map(
+          (dynamic item) => HsAllNews.fromJson(item),
+        )
+        .toList();
+
+      return news;
+    } else {
+      throw "Unable to retrieve pod.";
+    }
+  }
+}
+
+/* class API_Manager{
 
   Future<Nasapod> getPod() async {
     var client = http.Client();
@@ -12,7 +33,7 @@ class API_Manager{
     log('Quering Data');
 
     try {
-      var response = await client.get('https://space-bot-2021.herokuapp.com/v1/pod');
+      Response response = await client.get('https://space-bot-2021.herokuapp.com/v1/pod');
       if (response.statusCode == 200) {
         log('200');
         var jsonString = response.body;
@@ -34,4 +55,4 @@ class API_Manager{
     return nasaPod;
   }
 
-}
+} */

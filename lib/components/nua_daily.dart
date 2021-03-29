@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nua/models/hsallnews.model.dart';
 import 'package:nua/models/nasapod.dart';
 import 'package:nua/services/api_manager.dart';
 
-/* class NUADaily extends StatelessWidget {
+class NUADaily extends StatelessWidget {
 
   @override 
   Widget build(BuildContext context) {
@@ -41,16 +42,40 @@ import 'package:nua/services/api_manager.dart';
             ],
           ),
         ),
+        SizedBox(height: 20.0),
+        Container(
+          child: FutureBuilder(
+            future: APIManager().getNews(),
+            builder: (BuildContext context, AsyncSnapshot<List<HsAllNews>> snapshot) {
+              if(snapshot.hasData){
+                List<HsAllNews> pod = snapshot.data;
+                return ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  children: pod
+                    .map(
+                      (HsAllNews pod) => ListTile(
+                        title: Text(pod.name),
+                        subtitle: Text("${pod.publication}"),
+                      ),
+                    ).toList(),
+                );
+              }else{
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
 
+        ),
       ],
 
     );
 
   }
   
-} */
+}
 
-class NUADaily extends StatefulWidget {
+/* class NUADaily extends StatefulWidget {
 
   /* NUADaily({Key key}) : super(key: key); */
 
@@ -133,4 +158,4 @@ class _NUADailyState extends State<NUADaily> {
 
     );
   }
-}
+} */

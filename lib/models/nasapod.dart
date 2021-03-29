@@ -2,7 +2,7 @@
 //
 //     final nasapod = nasapodFromJson(jsonString);
 
-import 'dart:convert';
+/* import 'dart:convert';
 
 Nasapod nasapodFromJson(String str) => Nasapod.fromJson(json.decode(str));
 
@@ -50,4 +50,43 @@ class Nasapod {
         "title": title,
         "url": url,
     };
+}
+ */
+
+import 'package:flutter/foundation.dart';
+
+class Nasapod {
+
+  final String copyright;
+  final String date;
+  final String explanation;
+  final String hdurl;
+  final String mediaType;
+  final String serviceVersion;
+  final String title;
+  final String url;
+
+  Nasapod({
+    @required this.copyright,
+    @required this.date,
+    @required this.explanation,
+    @required this.hdurl,
+    @required this.mediaType,
+    @required this.serviceVersion,
+    @required this.title,
+    @required this.url,
+  });
+
+  factory Nasapod.fromJson(Map<String, dynamic> json) {
+    return Nasapod(
+      copyright: json['copyright'] as String,
+      date: json['date'] as String,
+      explanation: json['explanation'] as String,
+      hdurl: json['hdurl'] as String,
+      mediaType: json['mediaType'] as String,
+      serviceVersion: json['serviceVersion'] as String,
+      title: json['title'] as String,
+      url: json['url'] as String,
+    );
+  }
 }
