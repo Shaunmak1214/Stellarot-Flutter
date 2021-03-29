@@ -46,10 +46,49 @@ class _MainScreenState extends State<MainScreen> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(115.0),
+        child: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text('Main Screen'),
+          title: SizedBox(
+            height: 110.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start, //start from top
+              crossAxisAlignment: CrossAxisAlignment.start, //start from left
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 20.0, left: 20.0),
+                  child: Text(
+                    'NUA',
+                    style: TextStyle(
+                      color: Color.fromRGBO(29, 29, 29, 1), 
+                      fontSize: 35.0, 
+                      fontFamily: 'NicoMoji',
+                      letterSpacing: 3.5,
+                    ),
+                  )
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5.0, left: 20.0),
+                  child: Text(
+                    'an app for space news',
+                    style: TextStyle(
+                        color: Color.fromRGBO(58, 65, 66, 1), 
+                        fontSize: 15.0,
+                        fontFamily: 'Poppins',
+                        letterSpacing: 1.0,
+                      )
+                    ),
+                  )
+              ]
+            ),
+          ),
+          backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+          //backgroundColor: Color.fromRGBO(200, 200, 200, 1),
+          elevation: 10, //shadow
+          toolbarHeight: 200,
+        )
       ),
       body: ListView(
 

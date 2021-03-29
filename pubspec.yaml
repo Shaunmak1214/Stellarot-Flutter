@@ -50,6 +50,14 @@ flutter:
       fonts:
         - asset: assets/fonts/Quicksand-Regular.ttf
 
+    - family: NicoMoji
+      fonts:
+        - asset: assets/fonts/NicoMoji-Regular.ttf
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
