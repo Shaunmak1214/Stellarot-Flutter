@@ -4,6 +4,7 @@ import './apis/SpaceNews.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import './presentation/menu_icons.dart';
+import './widgets/CategoryButtons.dart';
 
 void main() {
   runApp(MyApp());
@@ -55,16 +56,55 @@ class _MyHomePageState extends State<MyHomePage> {
       style: optionStyle,
     ),
   ];
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: new Drawer(
+          child: Center(
+            child: ListView(
+              shrinkWrap: true,
+              // Important: Remove any padding from the ListView.
+
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                  child: Text('Drawer Header'),
+                ),
+                ListTile(
+                  title: const Text('Item 1'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+                ListTile(
+                  title: const Text('Item 2'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
         appBar: AppBar(
             title: Center(
                 child: Text(widget.title,
                     style: TextStyle(fontSize: 25, fontFamily: 'Andalemo'))),
             backgroundColor: Colors.white,
             elevation: 0,
-            leading: Icon(Menu.group_21, size: 15),
+            leading: Builder(
+              builder: (context) => IconButton(
+                icon: new Icon(Menu.group_21, size: 14),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
+            ),
             leadingWidth: 56,
             actions: [
               Container(
@@ -77,26 +117,34 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Dashboard',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold)),
-                    Text(' - Daily news',
-                        style:
-                            TextStyle(fontSize: 15.0, fontFamily: 'Montserrat'))
-                  ]),
-              Padding(padding: const EdgeInsets.only(top: 20.0)),
               Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(0.0),
+                      child: Wrap(children: [
+                        CategoryButtons(
+                          buttonText: "All",
+                        ),
+                        CategoryButtons(
+                          buttonText: "Nasa",
+                        ),
+                        CategoryButtons(
+                          buttonText: "Space X",
+                        ),
+                        CategoryButtons(
+                          buttonText: "SNAAPI",
+                        ),
+                        CategoryButtons(
+                          buttonText: "Blue Origin",
+                        ),
+                      ]),
+                    ),
+                    Padding(padding: const EdgeInsets.all(10.0)),
                     Center(
                         child: SizedBox(
                             height: MediaQuery.of(context).size.height,
-                            child: SpaceNewsListView()))
+                            child: SpaceNewsListView())),
                   ])
             ],
           ),
