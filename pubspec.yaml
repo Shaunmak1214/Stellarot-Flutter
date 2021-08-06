@@ -46,6 +46,14 @@ flutter:
       fonts:
         - asset: fonts/Montserrat-Regular.ttf
 
+    - family: Andalemo
+      fonts:
+        - asset: fonts/andalemo.ttf
+
+    - family: Menu
+      fonts:
+        - asset: fonts/Menu.ttf
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

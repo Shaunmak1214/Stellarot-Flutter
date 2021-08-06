@@ -83,7 +83,7 @@ class SpaceNewsListView extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 20.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
-            color: Color.fromRGBO(255, 255, 255, 1.0),
+            color: Color.fromRGBO(245, 245, 245, 1.0),
           ),
           child: Padding(
               padding: const EdgeInsets.all(15.0),
@@ -93,13 +93,13 @@ class SpaceNewsListView extends StatelessWidget {
                     Text(
                         'Starliner resets for next launch attempt after ISS problems',
                         style: TextStyle(
-                            fontSize: 15.0,
+                            fontSize: 18.0,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold)),
                     Padding(padding: const EdgeInsets.only(top: 20.0)),
                     Container(
                       width: double.infinity,
-                      height: 175.0,
+                      height: 300.0,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.cover,
@@ -109,7 +109,7 @@ class SpaceNewsListView extends StatelessWidget {
                         color: Color.fromRGBO(245, 245, 245, 1.0),
                       ),
                     ),
-                    Padding(padding: const EdgeInsets.only(top: 10.0)),
+                    Padding(padding: const EdgeInsets.only(top: 20.0)),
                     Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -119,11 +119,11 @@ class SpaceNewsListView extends StatelessWidget {
                               children: <Widget>[
                                 Icon(
                                   Icons.link_outlined,
-                                  size: 20.0,
+                                  size: 15.0,
                                   semanticLabel: 'Link',
                                 ),
                                 Padding(padding: EdgeInsets.only(left: 10.0)),
-                                Text("Nasa"),
+                                Text("Nasa", style: TextStyle(fontSize: 15.0)),
                               ]),
                           Padding(padding: EdgeInsets.only(left: 10.0)),
                           Row(
@@ -131,11 +131,11 @@ class SpaceNewsListView extends StatelessWidget {
                               children: <Widget>[
                                 Icon(
                                   Icons.timelapse_outlined,
-                                  size: 20.0,
+                                  size: 15.0,
                                   semanticLabel: 'Link',
                                 ),
                                 Padding(padding: EdgeInsets.only(left: 10.0)),
-                                Text("1h"),
+                                Text("1h", style: TextStyle(fontSize: 15.0)),
                               ])
                         ])
                   ])));
@@ -147,7 +147,7 @@ class SpaceNewsListView extends StatelessWidget {
         ),
         margin: const EdgeInsets.only(bottom: 10.0),
         child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -156,7 +156,7 @@ class SpaceNewsListView extends StatelessWidget {
                     flex: 4,
                     child: Container(
                       width: 150.0,
-                      height: 125.0,
+                      height: 110.0,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.cover, image: NetworkImage(imageUrl)),
@@ -182,7 +182,7 @@ class SpaceNewsListView extends StatelessWidget {
                                 height: 45.0,
                               ),
                               Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
                                     Row(
@@ -191,12 +191,12 @@ class SpaceNewsListView extends StatelessWidget {
                                         children: <Widget>[
                                           Icon(
                                             Icons.link_outlined,
-                                            size: 20.0,
+                                            size: 10.0,
                                             semanticLabel: 'Link',
                                           ),
                                           Padding(
                                               padding:
-                                                  EdgeInsets.only(left: 10.0)),
+                                                  EdgeInsets.only(left: 5.0)),
                                           Text(
                                             newsSite,
                                             style: TextStyle(fontSize: 10.0),
@@ -210,13 +210,14 @@ class SpaceNewsListView extends StatelessWidget {
                                         children: <Widget>[
                                           Icon(
                                             Icons.timelapse_outlined,
-                                            size: 20.0,
+                                            size: 10.0,
                                             semanticLabel: 'Link',
                                           ),
                                           Padding(
                                               padding:
-                                                  EdgeInsets.only(left: 10.0)),
-                                          Text("1h"),
+                                                  EdgeInsets.only(left: 5.0)),
+                                          Text("1h",
+                                              style: TextStyle(fontSize: 10.0)),
                                         ])
                                   ])
                             ])),

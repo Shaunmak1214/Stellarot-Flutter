@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-import './apis/try.dart';
 import './apis/SpaceNews.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import './presentation/menu_icons.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: Colors.white,
           accentColor: Colors.black,
-          scaffoldBackgroundColor: Color.fromRGBO(245, 245, 245, 1.0),
+          scaffoldBackgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
           fontFamily: 'Montserrat'),
       home: MyHomePage(title: 'Stellarot'),
     );
@@ -59,10 +59,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
+            title: Center(
+                child: Text(widget.title,
+                    style: TextStyle(fontSize: 25, fontFamily: 'Andalemo'))),
+            backgroundColor: Colors.white,
+            elevation: 0,
+            leading: Icon(Menu.group_21, size: 15),
+            leadingWidth: 56,
+            actions: [
+              Container(
+                  padding: EdgeInsets.only(right: 20),
+                  child: Icon(Icons.search))
+            ]),
         body: SingleChildScrollView(
           padding:
               EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
