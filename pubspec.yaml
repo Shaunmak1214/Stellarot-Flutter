@@ -1,5 +1,5 @@
-name: stellarot_flutter_revamped
-description: A new Flutter project.
+name: Stellarot
+description: Stellarot, space news at a glance
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -21,14 +21,15 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
   flutter_native_splash: ^1.2.1
   google_nav_bar: ^5.0.5
   http: ^0.13.3
   line_icons: ^2.0.1
   lottie: ^1.1.0
+  material_floating_search_bar: ^0.3.4
 
 dev_dependencies:
   flutter_test:

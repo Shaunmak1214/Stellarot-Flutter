@@ -1,39 +1,36 @@
 import 'package:flutter/material.dart';
 
 class CategoryButtons extends StatefulWidget {
-  CategoryButtons({Key? key, required this.buttonText}) : super(key: key);
+  CategoryButtons({Key? key, required this.buttonText, required this.onPressed})
+      : super(key: key);
   final String buttonText;
+  final Function? onPressed;
 
   @override
   _CategoryButtonsState createState() => _CategoryButtonsState();
 }
 
 class _CategoryButtonsState extends State<CategoryButtons> {
-  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-    onPrimary: Colors.white,
-    primary: Colors.white,
-    minimumSize: Size(88, 36),
-    padding: EdgeInsets.symmetric(horizontal: 8),
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4.0)),
-    ),
-  );
+  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        color: Colors.white,
+    return Container(
         padding: EdgeInsets.only(right: 5),
-        child: new ElevatedButton(
-          style: raisedButtonStyle,
-          onPressed: () {},
+        child: OutlinedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0))),
+          ),
+          onPressed: () {
+            print('Received click');
+            widget.onPressed?.call();
+          },
           child: Text(
             widget.buttonText,
-            style: TextStyle(color: Colors.black, fontSize: 14),
+            style: TextStyle(color: Colors.white),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
