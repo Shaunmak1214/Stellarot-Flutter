@@ -15,6 +15,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
+  int _catSelectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -78,6 +79,7 @@ class _DashboardState extends State<Dashboard> {
                 child: Text('Stellarot',
                     style: TextStyle(fontSize: 25, fontFamily: 'Andalemo'))),
             backgroundColor: Colors.white,
+            brightness: Brightness.light,
             elevation: 0,
             leading: Builder(
               builder: (context) => IconButton(
@@ -92,42 +94,59 @@ class _DashboardState extends State<Dashboard> {
                   child: Icon(Icons.search))
             ]),
         body: SingleChildScrollView(
-          padding:
-              EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Wrap(children: [
-                      CategoryButtons(
-                        buttonText: "All",
-                        onPressed: () => {print('recieved from parent')},
-                      ),
-                      CategoryButtons(
-                        buttonText: "Nasa",
-                        onPressed: () => {print('recieved from parent')},
-                      ),
-                      CategoryButtons(
-                        buttonText: "Space X",
-                        onPressed: () => {print('recieved from parent')},
-                      ),
-                      CategoryButtons(
-                        buttonText: "SNAAPI",
-                        onPressed: () => {print('recieved from parent')},
-                      ),
-                      CategoryButtons(
-                        buttonText: "Blue Origin",
-                        onPressed: () => {print('recieved from parent')},
-                      ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 10),
+                child: Container(
+                  width: double.infinity,
+                  height: 35.0,
+                  child: ListView(scrollDirection: Axis.horizontal, children: [
+                    CategoryButtons(
+                      buttonText: "All",
+                      onPressed: (index) {
+                        setState(() {
+                          _catSelectedIndex = 0;
+                          print(_catSelectedIndex);
+                        });
+                      },
+                      selected: true,
+                    ),
+                    CategoryButtons(
+                      buttonText: "Nasa",
+                      onPressed: () => {print('recieved from parent')},
+                      selected: false,
+                    ),
+                    CategoryButtons(
+                      buttonText: "Space X",
+                      onPressed: () => {print('recieved from parent')},
+                      selected: false,
+                    ),
+                    CategoryButtons(
+                      buttonText: "SNAAPI",
+                      onPressed: () => {print('recieved from parent')},
+                      selected: false,
+                    ),
+                    CategoryButtons(
+                      buttonText: "Blue Origin",
+                      onPressed: () => {print('recieved from parent')},
+                      selected: false,
+                    ),
+                  ]),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Center(
+                          child: SizedBox(
+                              height: MediaQuery.of(context).size.height,
+                              child: SpaceNewsListView())),
                     ]),
-                    Padding(padding: const EdgeInsets.all(10.0)),
-                    Center(
-                        child: SizedBox(
-                            height: MediaQuery.of(context).size.height,
-                            child: SpaceNewsListView())),
-                  ])
+              )
             ],
           ),
         ),
@@ -149,7 +168,7 @@ class _DashboardState extends State<Dashboard> {
                     child: SafeArea(
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            top: 20.0, bottom: 20.0, left: 20.0, right: 20.0),
+                            top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
                         child: GNav(
                           backgroundColor: Color.fromRGBO(255, 255, 255, 0.0),
                           rippleColor: Colors.grey[300]!,
