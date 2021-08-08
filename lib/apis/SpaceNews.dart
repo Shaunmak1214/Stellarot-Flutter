@@ -51,10 +51,14 @@ class SpaceNewsListView extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }
-        return Center(
-          child: Lottie.network(
-              'https://assets5.lottiefiles.com/packages/lf20_x62chJ.json'),
-        );
+        return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Container(
+            width: 100.0,
+            height: 100.0,
+            child: Lottie.network(
+                'https://assets3.lottiefiles.com/packages/lf20_ObshHL.json'),
+          ),
+        ]);
       },
     );
   }
