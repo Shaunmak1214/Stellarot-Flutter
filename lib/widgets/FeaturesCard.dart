@@ -25,7 +25,7 @@ class FeaturesCard extends StatefulWidget {
 class _FeaturesCardState extends State<FeaturesCard> {
   @override
   Widget build(BuildContext context) {
-    double c_width = MediaQuery.of(context).size.width * 0.8;
+    double cwidth = MediaQuery.of(context).size.width * 0.8;
     return Container(
         margin: const EdgeInsets.only(bottom: 20.0),
         decoration: BoxDecoration(
@@ -67,7 +67,7 @@ class _FeaturesCardState extends State<FeaturesCard> {
                 bottom: 20.0,
                 left: 20.0,
                 child: Container(
-                  width: c_width,
+                  width: cwidth,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

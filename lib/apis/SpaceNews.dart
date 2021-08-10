@@ -69,7 +69,6 @@ class SpaceNewsListView extends StatelessWidget {
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
-      print(response.body);
       return jsonResponse.map((news) => new SpaceNews.fromJson(news)).toList();
     } else {
       throw Exception('Failed to load jobs from API');

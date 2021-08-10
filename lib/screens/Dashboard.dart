@@ -136,16 +136,21 @@ class _DashboardState extends State<Dashboard> {
                   ]),
                 ),
               ),
+              // Center(
+              //   child: ElevatedButton(
+              //       child: Text('Sign in', style: TextStyle(fontSize: 20)),
+              //       onPressed: () => {
+              //             Navigator.push(
+              //               context,
+              //               MaterialPageRoute(builder: (context) => Post()),
+              //             ),
+              //           }),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Center(
-                          child: SizedBox(
-                              height: MediaQuery.of(context).size.height,
-                              child: SpaceNewsListView())),
-                    ]),
+                child: SizedBox(
+                    height: MediaQuery.of(context).size.height - 225,
+                    child: SpaceNewsListView()),
               )
             ],
           ),
@@ -187,12 +192,12 @@ class _DashboardState extends State<Dashboard> {
                               text: 'Home',
                             ),
                             GButton(
-                              icon: LineIcons.heart,
-                              text: 'Likes',
-                            ),
-                            GButton(
                               icon: LineIcons.search,
                               text: 'Search',
+                            ),
+                            GButton(
+                              icon: LineIcons.inbox,
+                              text: 'Inbox',
                             ),
                             GButton(
                               icon: LineIcons.user,
