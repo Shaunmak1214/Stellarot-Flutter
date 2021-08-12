@@ -39,49 +39,32 @@ class SpaceNews {
   }
 }
 
-class SpaceNewsListView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List<SpaceNews>>(
-      future: _fetchNews(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<SpaceNews>? data = snapshot.data;
-          return _newsListView(data);
-        } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
-        }
-        return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Container(
-            width: 100.0,
-            height: 100.0,
-            child: Lottie.network(
-                'https://assets3.lottiefiles.com/packages/lf20_ObshHL.json'),
-          ),
-        ]);
-      },
-    );
-  }
+class SpaceNewsListView extends StatefulWidget {
+  SpaceNewsListView({Key? key}) : super(key: key);
 
-  Future<List<SpaceNews>> _fetchNews() async {
-    var url = new Uri.https('api.spaceflightnewsapi.net', '/v3/articles');
-    final response = await http.get(url);
+  _SpaceNewsListView createState() => _SpaceNewsListView();
+}
 
-    if (response.statusCode == 200) {
-      List jsonResponse = json.decode(response.body);
-      return jsonResponse.map((news) => new SpaceNews.fromJson(news)).toList();
-    } else {
-      throw Exception('Failed to load jobs from API');
+class _SpaceNewsListView extends State<SpaceNewsListView> {
+  ScrollController _scrollController = ScrollController();
+  int count = 10;
+  bool _loading = false;
+
+  double _scrollPosition = 0;
+
+  _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      setState(() {
+        count = count + 20;
+      });
     }
   }
 
-  ListView _newsListView(data) {
-    return ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return newsCard(index, data[index].title, data[index].url,
-              data[index].imageUrl, data[index].newsSite, data[index].summary);
-        });
+  @override
+  void initState() {
+    _scrollController.addListener(_scrollListener);
+    super.initState();
   }
 
   Column newsCard(int index, String title, String url, String imageUrl,
@@ -105,7 +88,7 @@ class SpaceNewsListView extends StatelessWidget {
               url: url,
               imageUrl: imageUrl,
               newsSite: newsSite,
-              summary: summary)
+              summary: summary),
         ],
       );
     } else {
@@ -121,5 +104,81 @@ class SpaceNewsListView extends StatelessWidget {
         ],
       );
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<SpaceNews>>(
+      future: _fetchNews(count),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<SpaceNews>? data = snapshot.data;
+          return Column(
+            children: [
+              Expanded(
+                child: _newsListView(data),
+              ),
+              _loading
+                  ? Padding(
+                      padding: const EdgeInsets.all(0.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 50.0,
+                              height: 50.0,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Lottie.network(
+                                  'https://assets3.lottiefiles.com/packages/lf20_ObshHL.json'),
+                            ),
+                          ]))
+                  : SizedBox(
+                      width: 0,
+                      height: 0,
+                    )
+            ],
+          );
+        } else if (snapshot.hasError) {
+          return Text("${snapshot.error}");
+        }
+        return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Container(
+            width: 100.0,
+            height: 100.0,
+            child: Lottie.network(
+                'https://assets3.lottiefiles.com/packages/lf20_ObshHL.json'),
+          ),
+        ]);
+      },
+    );
+  }
+
+  Future<List<SpaceNews>> _fetchNews(int count) async {
+    setState(() {
+      _loading = true;
+    });
+    var url = new Uri.https('api.spaceflightnewsapi.net', '/v3/articles',
+        {"_limit": count.toString()});
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      _loading = false;
+
+      return jsonResponse.map((news) => new SpaceNews.fromJson(news)).toList();
+    } else {
+      throw Exception('Failed to load jobs from API');
+    }
+  }
+
+  ListView _newsListView(data) {
+    return ListView.builder(
+        controller: _scrollController,
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return newsCard(index, data[index].title, data[index].url,
+              data[index].imageUrl, data[index].newsSite, data[index].summary);
+        });
   }
 }

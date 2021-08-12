@@ -41,6 +41,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    int _selectedCatIndex = 0;
     return Scaffold(
         drawer: new Drawer(
           child: Center(
@@ -105,47 +106,52 @@ class _DashboardState extends State<Dashboard> {
                   child: ListView(scrollDirection: Axis.horizontal, children: [
                     CategoryButtons(
                       buttonText: "All",
-                      onPressed: (index) {
+                      onPressed: () => {
                         setState(() {
                           _catSelectedIndex = 0;
-                          print(_catSelectedIndex);
-                        });
+                        })
                       },
-                      selected: true,
+                      selected: _catSelectedIndex == 0 ? true : false,
                     ),
                     CategoryButtons(
                       buttonText: "Nasa",
-                      onPressed: () => {print('recieved from parent')},
-                      selected: false,
+                      onPressed: () => {
+                        setState(() {
+                          _catSelectedIndex = 1;
+                        })
+                      },
+                      selected: _catSelectedIndex == 1 ? true : false,
                     ),
                     CategoryButtons(
                       buttonText: "Space X",
-                      onPressed: () => {print('recieved from parent')},
-                      selected: false,
+                      onPressed: () => {
+                        setState(() {
+                          _catSelectedIndex = 2;
+                        })
+                      },
+                      selected: _catSelectedIndex == 2 ? true : false,
                     ),
                     CategoryButtons(
                       buttonText: "SNAAPI",
-                      onPressed: () => {print('recieved from parent')},
-                      selected: false,
+                      onPressed: () => {
+                        setState(() {
+                          _catSelectedIndex = 3;
+                        })
+                      },
+                      selected: _catSelectedIndex == 3 ? true : false,
                     ),
                     CategoryButtons(
                       buttonText: "Blue Origin",
-                      onPressed: () => {print('recieved from parent')},
-                      selected: false,
+                      onPressed: () => {
+                        setState(() {
+                          _catSelectedIndex = 4;
+                        })
+                      },
+                      selected: _catSelectedIndex == 4 ? true : false,
                     ),
                   ]),
                 ),
               ),
-              // Center(
-              //   child: ElevatedButton(
-              //       child: Text('Sign in', style: TextStyle(fontSize: 20)),
-              //       onPressed: () => {
-              //             Navigator.push(
-              //               context,
-              //               MaterialPageRoute(builder: (context) => Post()),
-              //             ),
-              //           }),
-              // ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
@@ -188,9 +194,15 @@ class _DashboardState extends State<Dashboard> {
                           color: Colors.black,
                           tabs: [
                             GButton(
-                              icon: LineIcons.home,
-                              text: 'Home',
-                            ),
+                                icon: LineIcons.home,
+                                text: 'Home',
+                                onPressed: () => {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Dashboard()),
+                                      ),
+                                    }),
                             GButton(
                               icon: LineIcons.search,
                               text: 'Search',

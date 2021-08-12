@@ -3,6 +3,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'dart:ui' as ui;
 
+import './Dashboard.dart';
+
 class Post extends StatefulWidget {
   Post(
       {Key? key,
@@ -197,9 +199,15 @@ class _PostState extends State<Post> {
                           color: Colors.white,
                           tabs: [
                             GButton(
-                              icon: LineIcons.home,
-                              text: 'Home',
-                            ),
+                                icon: LineIcons.home,
+                                text: 'Home',
+                                onPressed: () => {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Dashboard()),
+                                      ),
+                                    }),
                             GButton(
                               icon: LineIcons.search,
                               text: 'Search',
