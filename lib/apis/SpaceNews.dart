@@ -50,8 +50,6 @@ class _SpaceNewsListView extends State<SpaceNewsListView> {
   int count = 10;
   bool _loading = false;
 
-  double _scrollPosition = 0;
-
   _scrollListener() {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
