@@ -1,3 +1,4 @@
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -33,6 +34,7 @@ class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
     double cwidth = MediaQuery.of(context).size.width * 0.8;
+    _getSubscribed(widget.newsSite);
     return Scaffold(
         extendBodyBehindAppBar: true,
         drawer: new Drawer(
@@ -301,10 +303,10 @@ class _PostState extends State<Post> {
 
   _getSubscribed(String newsSite) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool followed = (prefs.getBool(newsSite) ?? false);
+    bool followedFromStorage = (prefs.getBool(newsSite) ?? false);
 
     setState(() {
-      followed = followed;
+      followed = followedFromStorage;
     });
   }
 }

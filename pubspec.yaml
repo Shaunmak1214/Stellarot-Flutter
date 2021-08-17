@@ -24,6 +24,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.18.0
   flutter_native_splash: ^1.2.1
   google_nav_bar: ^5.0.5
   http: ^0.13.3
