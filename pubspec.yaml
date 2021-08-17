@@ -30,6 +30,7 @@ dependencies:
   line_icons: ^2.0.1
   lottie: ^1.1.0
   material_floating_search_bar: ^0.3.4
+  shared_preferences: ^2.0.6
 
 dev_dependencies:
   flutter_test:

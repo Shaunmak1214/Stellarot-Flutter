@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'dart:ui' as ui;
@@ -27,6 +28,8 @@ class Post extends StatefulWidget {
 
 class _PostState extends State<Post> {
   int _selectedIndex = 0;
+  bool followed = false;
+
   @override
   Widget build(BuildContext context) {
     double cwidth = MediaQuery.of(context).size.width * 0.8;
@@ -129,20 +132,69 @@ class _PostState extends State<Post> {
                           Positioned(
                             bottom: 20.0,
                             left: 20.0,
-                            child: Container(
-                              width: cwidth,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(widget.title,
-                                      maxLines: null,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 25.0,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
+                            width: cwidth,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: cwidth * 0.8,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(widget.title,
+                                          maxLines: null,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25.0,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                    width: cwidth * 0.20,
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          // FutureBuilder(
+                                          //     future: _getSubscribed(
+                                          //         widget.newsSite),
+                                          //     builder: (BuildContext context,
+                                          //         AsyncSnapshot snapshot) {
+                                          //       if (snapshot.hasData) {
+                                          //         print(snapshot.data);
+                                          //         return new InkWell(
+                                          //             child: new Text(
+                                          //               snapshot.data,
+                                          //               style: TextStyle(
+                                          //                   color:
+                                          //                       Colors.white),
+                                          //             ),
+                                          //             onTap: () => {
+                                          //                   _subscribe(
+                                          //                       widget.newsSite)
+                                          //                 });
+                                          //       }
+
+                                          //       return Text('Loading');
+                                          //     }),
+                                          new InkWell(
+                                              child: new Text(
+                                                followed
+                                                    ? 'Unfollow'
+                                                    : 'Follow',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              onTap: () => {
+                                                    _subscribe(context,
+                                                        widget.newsSite)
+                                                  })
+                                        ]))
+                              ],
                             ),
                           ),
                         ],
@@ -232,5 +284,27 @@ class _PostState extends State<Post> {
                     ),
                   ))),
         ));
+  }
+
+  _subscribe(BuildContext context, String newsSite) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs.edit().putInt('counter', counter).apply();
+    bool followedFromStorage = (prefs.getBool(newsSite) ?? false);
+    setState(() {
+      followed = !followedFromStorage;
+    });
+    await prefs.setBool(newsSite, !followedFromStorage);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(followedFromStorage ? 'Unfollowed' : 'Followed'),
+    ));
+  }
+
+  _getSubscribed(String newsSite) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool followed = (prefs.getBool(newsSite) ?? false);
+
+    setState(() {
+      followed = followed;
+    });
   }
 }
