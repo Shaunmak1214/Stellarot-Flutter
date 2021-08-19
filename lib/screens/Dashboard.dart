@@ -3,6 +3,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'dart:ui' as ui;
 import '../apis/SpaceNews.dart';
+import '../apis/Suggestions.dart';
 import '../presentation/menu_icons.dart';
 import '../widgets/CategoryButtons.dart';
 
@@ -281,32 +282,41 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList = query.isEmpty
-        ? recentCities
-        : cities.where((p) => p.startsWith(query)).toList();
+    print(query);
+    // final suggestionList = query.isEmpty
+    //     ? recentCities
+    //     : cities.where((p) => p.startsWith(query)).toList();
 
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        onTap: () {
-          showResults(context);
-        },
-        leading: Icon(Icons.location_city),
-        title: RichText(
-          text: TextSpan(
-            text: suggestionList[index].substring(0, query.length),
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-            children: [
-              TextSpan(
-                text: suggestionList[index].substring(query.length),
-              ),
-            ],
-          ),
-        ),
-      ),
-      itemCount: suggestionList.length,
-    );
+    // return ListView.builder(
+    //   itemBuilder: (context, index) => ListTile(
+    //     onTap: () {
+    //       showResults(context);
+    //     },
+    //     leading: Icon(Icons.location_city),
+    //     title: RichText(
+    //       text: TextSpan(
+    //         text: suggestionList[index].substring(0, query.length),
+    //         style: TextStyle(
+    //           color: Colors.black,
+    //           fontWeight: FontWeight.bold,
+    //         ),
+    //         children: [
+    //           TextSpan(
+    //             text: suggestionList[index].substring(query.length),
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    //   itemCount: suggestionList.length,
+    // );
+
+    return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Center(
+          child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: SearcherListView(query: query)),
+        ));
   }
 }
