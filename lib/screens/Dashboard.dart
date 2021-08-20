@@ -17,6 +17,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
   int _catSelectedIndex = 0;
+  String _catSelected = '';
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -118,6 +119,7 @@ class _DashboardState extends State<Dashboard> {
                       onPressed: () => {
                         setState(() {
                           _catSelectedIndex = 0;
+                          _catSelected = "";
                         })
                       },
                       selected: _catSelectedIndex == 0 ? true : false,
@@ -127,6 +129,7 @@ class _DashboardState extends State<Dashboard> {
                       onPressed: () => {
                         setState(() {
                           _catSelectedIndex = 1;
+                          _catSelected = "nasa";
                         })
                       },
                       selected: _catSelectedIndex == 1 ? true : false,
@@ -136,6 +139,7 @@ class _DashboardState extends State<Dashboard> {
                       onPressed: () => {
                         setState(() {
                           _catSelectedIndex = 2;
+                          _catSelected = "spacex";
                         })
                       },
                       selected: _catSelectedIndex == 2 ? true : false,
@@ -145,6 +149,7 @@ class _DashboardState extends State<Dashboard> {
                       onPressed: () => {
                         setState(() {
                           _catSelectedIndex = 3;
+                          _catSelected = "snapi";
                         })
                       },
                       selected: _catSelectedIndex == 3 ? true : false,
@@ -154,6 +159,7 @@ class _DashboardState extends State<Dashboard> {
                       onPressed: () => {
                         setState(() {
                           _catSelectedIndex = 4;
+                          _catSelected = "blueorigin";
                         })
                       },
                       selected: _catSelectedIndex == 4 ? true : false,
@@ -165,7 +171,9 @@ class _DashboardState extends State<Dashboard> {
                 padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
                     height: MediaQuery.of(context).size.height - 225,
-                    child: SpaceNewsListView()),
+                    child: SpaceNewsListView(
+                      cat: _catSelected,
+                    )),
               )
             ],
           ),

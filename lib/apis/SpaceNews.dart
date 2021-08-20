@@ -40,7 +40,9 @@ class SpaceNews {
 }
 
 class SpaceNewsListView extends StatefulWidget {
-  SpaceNewsListView({Key? key}) : super(key: key);
+  SpaceNewsListView({Key? key, this.cat = ''}) : super(key: key);
+
+  final String cat;
 
   _SpaceNewsListView createState() => _SpaceNewsListView();
 }
@@ -157,7 +159,7 @@ class _SpaceNewsListView extends State<SpaceNewsListView> {
       _loading = true;
     });
     var url = new Uri.https('api.spaceflightnewsapi.net', '/v3/articles',
-        {"_limit": count.toString()});
+        {"_limit": count.toString(), "title_contains": widget.cat});
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
