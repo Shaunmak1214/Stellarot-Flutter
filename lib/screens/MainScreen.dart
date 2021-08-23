@@ -18,73 +18,73 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: new Drawer(
-        child: Center(
-          child: ListView(
-            shrinkWrap: true,
-            // Important: Remove any padding from the ListView.
+        drawer: new Drawer(
+          child: Center(
+            child: ListView(
+              shrinkWrap: true,
+              // Important: Remove any padding from the ListView.
 
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                  child: Text('Drawer Header'),
                 ),
-                child: Text('Drawer Header'),
-              ),
-              ListTile(
-                title: const Text('Item 1'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-      appBar: AppBar(
-          title: Center(
-              child: Text('Stellarot',
-                  style: TextStyle(fontSize: 25, fontFamily: 'Andalemo'))),
-          backgroundColor: Colors.white,
-          brightness: Brightness.light,
-          elevation: 0,
-          leading: Builder(
-            builder: (context) => IconButton(
-              icon: new Icon(Menu.group_21, size: 14),
-              onPressed: () => Scaffold.of(context).openDrawer(),
+                ListTile(
+                  title: const Text('Item 1'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+                ListTile(
+                  title: const Text('Item 2'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+              ],
             ),
           ),
-          leadingWidth: 56,
-          actions: [
-            Container(
-              padding: EdgeInsets.only(right: 20),
-              child: IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    showSearch(
-                      context: context,
-                      delegate: DataSearch(),
-                    );
-                  }),
-            )
-          ]),
-      body: SafeArea(
-        child: IndexedStack(index: _selectedIndex, children: <Widget>[
-      Dashboard(),
-      Container(child: null),
-      Inbox(),
-Container(child: null),
-    ])),
-    bottomNavigationBar: Container(
+        ),
+        appBar: AppBar(
+            title: Center(
+                child: Text('Stellarot',
+                    style: TextStyle(fontSize: 25, fontFamily: 'Andalemo'))),
+            backgroundColor: Colors.white,
+            brightness: Brightness.light,
+            elevation: 0,
+            leading: Builder(
+              builder: (context) => IconButton(
+                icon: new Icon(Menu.group_21, size: 14),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
+            ),
+            leadingWidth: 56,
+            actions: [
+              Container(
+                padding: EdgeInsets.only(right: 20),
+                child: IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      showSearch(
+                        context: context,
+                        delegate: DataSearch(),
+                      );
+                    }),
+              )
+            ]),
+        body: SafeArea(
+            child: IndexedStack(index: _selectedIndex, children: <Widget>[
+          Dashboard(),
+          Container(child: null),
+          Inbox(),
+          Container(child: null),
+        ])),
+        bottomNavigationBar: Container(
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -117,9 +117,9 @@ Container(child: null),
                           color: Colors.black,
                           tabs: [
                             GButton(
-                                icon: LineIcons.home,
-                                text: 'Home',
-                                ),
+                              icon: LineIcons.home,
+                              text: 'Home',
+                            ),
                             GButton(
                               icon: LineIcons.search,
                               text: 'Search',
@@ -143,7 +143,6 @@ Container(child: null),
                       ),
                     ),
                   ))),
-        )
-    );
+        ));
   }
 }

@@ -39,81 +39,81 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 10),
-                child: Container(
-                  width: double.infinity,
-                  height: 35.0,
-                  child: ListView(scrollDirection: Axis.horizontal, children: [
-                    CategoryButtons(
-                      buttonText: "All",
-                      onPressed: () => {
-                        setState(() {
-                          _catSelectedIndex = 0;
-                          _catSelected = "";
-                        })
-                      },
-                      selected: _catSelectedIndex == 0 ? true : false,
-                    ),
-                    CategoryButtons(
-                      buttonText: "Nasa",
-                      onPressed: () => {
-                        setState(() {
-                          _catSelectedIndex = 1;
-                          _catSelected = "nasa";
-                        })
-                      },
-                      selected: _catSelectedIndex == 1 ? true : false,
-                    ),
-                    CategoryButtons(
-                      buttonText: "Space X",
-                      onPressed: () => {
-                        setState(() {
-                          _catSelectedIndex = 2;
-                          _catSelected = "spacex";
-                        })
-                      },
-                      selected: _catSelectedIndex == 2 ? true : false,
-                    ),
-                    CategoryButtons(
-                      buttonText: "SNAAPI",
-                      onPressed: () => {
-                        setState(() {
-                          _catSelectedIndex = 3;
-                          _catSelected = "snapi";
-                        })
-                      },
-                      selected: _catSelectedIndex == 3 ? true : false,
-                    ),
-                    CategoryButtons(
-                      buttonText: "Blue Origin",
-                      onPressed: () => {
-                        setState(() {
-                          _catSelectedIndex = 4;
-                          _catSelected = "blueorigin";
-                        })
-                      },
-                      selected: _catSelectedIndex == 4 ? true : false,
-                    ),
-                  ]),
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 15, left: 10),
+              child: Container(
+                width: double.infinity,
+                height: 35.0,
+                child: ListView(scrollDirection: Axis.horizontal, children: [
+                  CategoryButtons(
+                    buttonText: "All",
+                    onPressed: () => {
+                      setState(() {
+                        _catSelectedIndex = 0;
+                        _catSelected = "";
+                      })
+                    },
+                    selected: _catSelectedIndex == 0 ? true : false,
+                  ),
+                  CategoryButtons(
+                    buttonText: "Nasa",
+                    onPressed: () => {
+                      setState(() {
+                        _catSelectedIndex = 1;
+                        _catSelected = "nasa";
+                      })
+                    },
+                    selected: _catSelectedIndex == 1 ? true : false,
+                  ),
+                  CategoryButtons(
+                    buttonText: "Space X",
+                    onPressed: () => {
+                      setState(() {
+                        _catSelectedIndex = 2;
+                        _catSelected = "spacex";
+                      })
+                    },
+                    selected: _catSelectedIndex == 2 ? true : false,
+                  ),
+                  CategoryButtons(
+                    buttonText: "SNAAPI",
+                    onPressed: () => {
+                      setState(() {
+                        _catSelectedIndex = 3;
+                        _catSelected = "snapi";
+                      })
+                    },
+                    selected: _catSelectedIndex == 3 ? true : false,
+                  ),
+                  CategoryButtons(
+                    buttonText: "Blue Origin",
+                    onPressed: () => {
+                      setState(() {
+                        _catSelectedIndex = 4;
+                        _catSelected = "blueorigin";
+                      })
+                    },
+                    selected: _catSelectedIndex == 4 ? true : false,
+                  ),
+                ]),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: SizedBox(
-                    height: MediaQuery.of(context).size.height - 225,
-                    child: SpaceNewsListView(
-                      cat: _catSelected,
-                    )),
-              )
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SizedBox(
+                  height: MediaQuery.of(context).size.height - 225,
+                  child: SpaceNewsListView(
+                    cat: _catSelected,
+                  )),
+            )
+          ],
         ),
-        );
+      ),
+    );
   }
 }
 
