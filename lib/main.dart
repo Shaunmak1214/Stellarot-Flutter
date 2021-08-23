@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './screens/Dashboard.dart';
+import 'package:stellarot/screens/MainScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.black,
           scaffoldBackgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
           fontFamily: 'Montserrat'),
-      home: Dashboard(),
+      home: MainScreen(),
     );
   }
 }
