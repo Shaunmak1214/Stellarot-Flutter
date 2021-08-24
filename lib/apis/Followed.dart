@@ -41,7 +41,7 @@ class Searcher {
 class SearcherListView extends StatefulWidget {
   SearcherListView({Key? key, required this.subscribed}) : super(key: key);
 
-  List<String> subscribed;
+  final List<String> subscribed;
 
   _SearcherListView createState() => _SearcherListView();
 }
@@ -50,6 +50,7 @@ class _SearcherListView extends State<SearcherListView> {
   ScrollController _scrollController = ScrollController();
   int count = 10;
   bool _loading = false;
+  var renderUntilDate = '';
 
   _scrollListener() {
     if (_scrollController.position.pixels ==
@@ -153,7 +154,31 @@ class _SearcherListView extends State<SearcherListView> {
         controller: _scrollController,
         itemCount: data.length,
         itemBuilder: (context, index) {
+          // DateTime date = DateTime.parse(data[index].publishedAt);
           if (widget.subscribed.contains(data[index].newsSite)) {
+            if (index == 0) {
+              return Column(children: [
+                Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue[100],
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    margin: EdgeInsets.only(bottom: 20.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                          'You only see this because you"ve followed the newsSite',
+                          textAlign: TextAlign.center),
+                    )),
+                newsCard(
+                    index,
+                    data[index].title,
+                    data[index].url,
+                    data[index].imageUrl,
+                    data[index].newsSite,
+                    data[index].summary)
+              ]);
+            }
             return newsCard(
                 index,
                 data[index].title,
